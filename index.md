@@ -7,7 +7,7 @@ The typical workflow of running a computational task on a UQ hosted cluster invo
 1. Remotely access the login node of a UQ hosted cluster,
 2. Copy the code over to the cluster,
 3. Set up the necesary environements (e.g. pytorch) needed to execute the code, 
-4. Send a request to the cluster workload managment system (**slurm**) to have your code executed,
+4. Send a request to the cluster workload managment system (`slurm`) to have your code executed,
 5. Your code will be executed when the requested resources are available and it is your turn.
 
 This guide will take you through the above steps on by setting up `pytorch` UQ's **Rangpur** cluster. Other clusters should work in a similar fashion.
@@ -259,7 +259,65 @@ True
 ```
 The script prints `True` indicating pytorch is indeed installed and it is running on GPU. We can theoretically run nerual networks on GPU now!
 
-However, we are not done yet! 
+### 3.4 Installing Additional Packages in the `pytorch` Envornment
+Once our enviroment is **activated**, you can add more packages to it by going through a similar installation process to pytorch:
+```
+conda install opencv-python nibabel
+```
+`conda install` will install pacakges to the active enviroment you are already in.
+
+*** However, we are not done yet! We are currently running everything on the **login** node (as indicated by `@login1`). **Running heavy computing jobs on the login node is strictly forbidden and can result in bans!**. The **login** node is shared and can slowdown under heavy load - it only intended for editing, copying code and setting up enviroments (as we have been doing). 
+
+## 4. Use `slurm` to Run Our Code
+The real computing power of the cluster is hidden behind `slurm`, a popular cluster resource manager. We will need to submit a "request" to ask `slurm` to run our code on our behalf, using the hardware we specify. `slurm` will queue and execute jobs on *computing nodes* (not login). Wait times might increase if you already have too many running jobs.
+
+
+### 4.1 Example `slurm` Script ("Request") for Rangpur
+A `slurm` "request" comes in the form of `slurm` scripts. Lets create one. In your cluster terminal, type `nano slurm.sh` to create a file `slurm.sh`. Paste in the following content:
+```
+#!/bin/bash
+#SBATCH --time=1:00:00              # walltime limit (HH:MM:SS), job will be killed when this time is reached.
+#SBATCH --nodes=1                   # number of nodes, usually 1 is enough
+#SBATCH --ntasks-per-node=4         # 4 processor core(s) per node 
+#SBATCH --gres=gpu:1                # request 1 gpu (don't care what type)
+#SBATCH --partition=vgpu20          # gpu node name
+#SBATCH --job-name="test"
+
+# The following is exactly the same as we did before, load up enviroment and run the code.
+conda activate /home/Staff/[user_name]/my-env
+python main.py
+```
+A slurm script has two main parts:
+- specifications: a list of `#SBATCH --...` specifications to describe your request to slurm, including job name, run time and hardware requirements. A full list of options can be found [here](https://slurm.schedmd.com/sbatch.html). 
+- main program: following the list of specifications is the commands we would like to execute (such as training a neural network, preprocessing and inferece). The commands there will be executed **after** on a non-login node with the specifications we defined (gpu etc).
+
+For deep learning, the most important options are
+- `#SBATCH --gres...`: what GPU and how many to use. `gpu:1` means `1` of any `gpu`. We can request a specific type of GPU (e.g. on Wiener we put `#SBATCH --gres=gpu:tesla-smx2:1`)  
+- `#SBATCH --partition...`: what partition. Most GPUs reside in `gpu` partiions. On rangpur there are `vgpu10, vgpu20, vgpu40` hosting 10, 20, 40GB cards, respectively.
+
+In the example `slurm` script, we are requesting for `1` `gpu` from the `20GB gpu` partition.
+
+You could also generate your own `slurm` script using a [generator](https://www.hpc.iastate.edu/guides/classroom-hpc-cluster/slurm-job-script-generator) and copy it over once done. 
+
+### 5 Submit the `slurm` Script to Execute the Code
+Save the `slurm` script (`ctrl-x`, `y` then `Enter` for nano) and submit it for execution using `sbatch`.
+```
+04:28:55 user_name@login1 ~ → sbatch slurm.sh
+Submitted batch job 12614
+```
+You are given a `job_id` which can later be used to cancel the job if needed. Once the job starts, `slurm` will create two files under the current directory `[job_id].out` and `[job_id].err` to store `stdout` and `stderr` outputs, respectively. You code will output as if you executed it in a normal interactive terminal.
+
+You can submit multiple jobs (even of the exact same), just make their their outputs don't overwrite each other! (e.g. submitting 5 jobs that all save to the same `output.txt` will see them fighting over writes). You can check the status of your submitted jobs with `squeue -u [user_name]`:
+```
+04:29:05 user_name@login1 ~ → squeue -u user_name
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+             12614    vgpu20     test user_name PD       0:00      1 (Priority)
+```
+`ST=PD` means pending. Once your jobs starts running (when its turn comes), you will see `PD` will become `R` for "Running".
+
+To interrupt / kill a job, use `scancel [job_id]`.
+
+
 
 <!-- 
 You can use the [editor on GitHub](https://github.com/SiyuLiu0329/uq-hpc-guide2022/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
