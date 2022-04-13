@@ -323,10 +323,11 @@ To interrupt / kill a running or pending job, use `scancel [job_id]`.
 ## Some Final Recommendations
 - Write the code and `slurm` scripts on a local computer using your preferred code editor.
 - Alaways synce your code with `git` or Github, you can access the codebase using `git clone` on the cluster.
-- Test your code thoroughly before submitting to slurm, don't wait 5 hours for your job to run and hit an error immediately.
+- Some clusters may ignore the `--time` specification. Make sure your job is not running indefinately.
+- Test your code thoroughly before submitting to slurm, don't wait 5 hours for your job to start and hit an error immediately.
 - If you are submitting multiple jobs with the same code, to avoid overwites, make sure they are not outputting to the same. 
-- You can mount a cluster drive to your local computer using `sshfs` and access the cluster file system as if it was an external hard-drive.
-- The `$HOME` directories are limited a 5GB on rangpur, be sure to only store code and maybe `conda` enviroments there. For data storage you should use the `/scratch` drive or your research group drive.
+- You can mount a cluster directory to your local computer using `sshfs`, and access the cluster file system as if it was an connected hard-drive.
+- The `$HOME` directories are limited a 5GB on Rangpur, be sure to only store code and maybe `conda` enviroments there. For data storage you should use the `/scratch` drive or your research group drive.
 
 <!-- 
 You can use the [editor on GitHub](https://github.com/SiyuLiu0329/uq-hpc-guide2022/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
