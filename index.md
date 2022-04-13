@@ -316,7 +316,7 @@ True
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
              12614    vgpu20     test user_name PD       0:00      1 (Priority)
 ```
-`ST=PD` means pending. Once your jobs starts running (when its turn comes), you will see `PD` will become `R` for "Running".
+`ST=PD` means pending. Once your jobs starts running (when its turn comes), you will `R` in place of `PD`.
 
 To interrupt / kill a running or pending job, use `scancel [job_id]`.
 
