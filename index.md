@@ -84,8 +84,8 @@ Luckily, `conda` can be easily installed. Open the [miniconda website](https://d
 ```
 02:41:16 [user_name]@login1 ~ → wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 --2022-04-13 14:41:21--  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-Resolving proxy.eait.uq.edu.au (proxy.eait.uq.edu.au)... 130.102.71.129
-Connecting to proxy.eait.uq.edu.au (proxy.eait.uq.edu.au)|130.102.71.129|:8080... connected.
+Resolving xxx.xxx.xxx.xx (xxx.xxx.xxx.xx)... xxx.xxx.xx.xxx
+Connecting to xxx.xxx.xxx.xx (xxx.xxx.xxx.xx)|xxx.xxx.xx.xxx|:8080... connected.
 Proxy request sent, awaiting response... 200 OK
 Length: 75660608 (72M) [application/x-sh]
 Saving to: ‘Miniconda3-latest-Linux-x86_64.sh’
@@ -316,7 +316,7 @@ True
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
              12614    vgpu20     test user_name PD       0:00      1 (Priority)
 ```
-`ST=PD` means pending. Once your jobs starts running (when its turn comes), you will `R` in place of `PD`.
+`ST=PD` means pending. Once your jobs starts running (when its turn comes), you will see `R` in place of `PD`.
 
 To interrupt / kill a running or pending job, use `scancel [job_id]`.
 
