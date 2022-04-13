@@ -1,5 +1,5 @@
 ## What is HPC?
-High performance computing (HPC) is often referred as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and Disk Drives) that can be allocated on demand for our computational needs. 
+High performance computing (HPC) is often referred as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and Disk Drives) that can be allocated to execute our computational tasks. 
 
 There are a number of clusters avaiable to UQ reserachers and studnets. Cluster users can submit jobs (code) to a cluster for execution on specified hardware. The computing resources on a cluster are shared among all cluster users. The resources and workload are managed by a central job management system (**slurm**). 
 
