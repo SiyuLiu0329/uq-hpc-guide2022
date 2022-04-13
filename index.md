@@ -14,7 +14,7 @@ This guide will take you through the above steps on by setting up `pytorch` UQ's
 
 *NOTE: First, make sure you are familiar with using [Unix Shell commands](https://swcarpentry.github.io/shell-novice/reference.html)* - most clusters don't have graphical interfaces.
 
-## 1. Remotely Access the Login Node of a UQ's Rangpur Cluster
+## 1. Remotely Access the Login Node of UQ's Rangpur Cluster
 Use `ssh` to connect to and interact with the **login node** node of a Rangpur as follows 
 ```
 ssh [user_name]@rangpur.compute.eait.uq.edu.au
