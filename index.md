@@ -269,7 +269,7 @@ conda install opencv-python nibabel
 *** However, we are not done yet! We are currently running everything on the **login** node (as indicated by `@login1`). **Running heavy computing jobs on the login node is strictly forbidden and can result in bans!**. The **login** node is shared and can slowdown under heavy load - it only intended for editing, copying code and setting up enviroments (as we have been doing). 
 
 ## 4. Use `slurm` to Run Our Code
-The real computing power of the cluster is hidden behind `slurm`, a popular cluster resource manager. We will need to submit a "request" to ask `slurm` to run our code on our behalf, using the hardware we specify. `slurm` will queue and execute jobs on *computing nodes* (not login). Wait times might increase if you already have too many running jobs.
+The real computing power of the cluster is hidden behind `slurm`, a popular cluster resource manager. We will need to submit a "request" to ask `slurm` to run our code on our behalf, using the hardware we specify. `slurm` will queue and execute jobs on *computing nodes* (not login). Wait times may increase if you already have too many running jobs.
 
 
 ### 4.1 Example `slurm` Script ("Request") for Rangpur
@@ -288,12 +288,12 @@ conda activate /home/Staff/[user_name]/my-env
 python main.py
 ```
 A slurm script has two main parts:
-- specifications: a list of `#SBATCH --...` specifications to describe your request to slurm, including job name, run time and hardware requirements. A full list of options can be found [here](https://slurm.schedmd.com/sbatch.html). 
-- main program: following the list of specifications is the commands we would like to execute (such as training a neural network, preprocessing and inferece). The commands there will be executed **after** on a non-login node with the specifications we defined (gpu etc).
+- **specifications**: a list of `#SBATCH --...` specifications to describe your request to slurm, including job name, run time and hardware requirements. A full list of options can be found [here](https://slurm.schedmd.com/sbatch.html). 
+- **main program**: following the list of specifications is the commands we would like to execute (such as training a neural network, preprocessing and inferece). The commands there will be executed **after** on a non-login node with the specifications we defined (gpu etc).
 
-For deep learning, the most important options are
-- `#SBATCH --gres...`: what GPU and how many to use. `gpu:1` means `1` of any `gpu`. We can request a specific type of GPU (e.g. on Wiener we put `#SBATCH --gres=gpu:tesla-smx2:1`)  
-- `#SBATCH --partition...`: what partition. Most GPUs reside in `gpu` partiions. On rangpur there are `vgpu20` and `vgpu40` hosting 20 and 40GB cards, respectively.
+For deep learning, the most important specifications are
+- `#SBATCH --gres...`: what resource (typically GPU) and how many to use. `gpu:1` means `1` of any `gpu`. We can also request a specific type of GPU if available (e.g. on Wiener we put `#SBATCH --gres=gpu:tesla-smx2:1`).
+- `#SBATCH --partition...`: what partition to run the job in. Most GPUs reside in `gpu` partiions. On Rangpur the paritions are `vgpu20` and `vgpu40` hosting 20 and 40GB cards, respectively. Hencing the partion choice will influce what GPU we end up getting.
 
 In the example `slurm` script, we are requesting for `1` `gpu` from the `20GB gpu` partition.
 
