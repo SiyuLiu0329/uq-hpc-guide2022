@@ -293,7 +293,7 @@ A slurm script has two main parts:
 
 For deep learning, the most important options are
 - `#SBATCH --gres...`: what GPU and how many to use. `gpu:1` means `1` of any `gpu`. We can request a specific type of GPU (e.g. on Wiener we put `#SBATCH --gres=gpu:tesla-smx2:1`)  
-- `#SBATCH --partition...`: what partition. Most GPUs reside in `gpu` partiions. On rangpur there are `vgpu10, vgpu20, vgpu40` hosting 10, 20, 40GB cards, respectively.
+- `#SBATCH --partition...`: what partition. Most GPUs reside in `gpu` partiions. On rangpur there are `vgpu20` and `vgpu40` hosting 20 and 40GB cards, respectively.
 
 In the example `slurm` script, we are requesting for `1` `gpu` from the `20GB gpu` partition.
 
@@ -305,9 +305,12 @@ Save the `slurm` script (`ctrl-x`, `y` then `Enter` for nano) and submit it for 
 04:28:55 user_name@login1 ~ → sbatch slurm.sh
 Submitted batch job 12614
 ```
-You are given a `job_id` which can later be used to cancel the job if needed. Once the job starts, `slurm` will create two files under the current directory `[job_id].out` and `[job_id].err` to store `stdout` and `stderr` outputs, respectively. You code will output as if you executed it in a normal interactive terminal.
+You are given a `job_id` which can later be used to cancel the job if needed. Once the job starts, `slurm` will create two files under the current directory `[job_id].out` and `[job_id].err` to store `stdout` and `stderr` outputs, respectively. After execution, `12614.out` should contain one line. This is the same as before, but the job was executed using `slurm` allocated resources rather than on the login node.
+```
+True
+```
 
-You can submit multiple jobs (even of the exact same), just make their their outputs don't overwrite each other! (e.g. submitting 5 jobs that all save to the same `output.txt` will see them fighting over writes). You can check the status of your submitted jobs with `squeue -u [user_name]`:
+*Jobs read and write to the same local file system we see, hence they will output as if they were executed from an interactive terminal.* You can submit multiple jobs (even with the exact same code), just make their their outputs don't overwrite each other! (e.g. submitting 5 training scripts that save weights to `[ckpt]/weights.pth` will see them overwrting the checkpoint of each other). You can check the status of your submitted jobs with `squeue -u [user_name]`:
 ```
 04:29:05 user_name@login1 ~ → squeue -u user_name
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
@@ -315,9 +318,14 @@ You can submit multiple jobs (even of the exact same), just make their their out
 ```
 `ST=PD` means pending. Once your jobs starts running (when its turn comes), you will see `PD` will become `R` for "Running".
 
-To interrupt / kill a job, use `scancel [job_id]`.
+To interrupt / kill a running or pending job, use `scancel [job_id]`.
 
-
+## Some Recommendations
+- Write your code and `slurm` scripts on your local computer using your preferred code editor, sync with `git` and copy over to cluster by calling `git clone [repo_url]` on the cluster.
+- Test your code locally before submitting to slurm, don't wait 5 hours for your job to run and hit an error immediately.
+- If you are submitting multiple jobs with the same code, make sure they all output to different directories to avoid overwites. 
+- You could mount a cluster drive to your local computer using `sshfs` and access the cluster file system as if it was an external hard-drive.
+- The `$HOME` directories are limited a 5GB on rangpur, be sure to only store code and maybe `conda` enviroments there. For data storage you should use the `/scratch` drive or your research group drive.
 
 <!-- 
 You can use the [editor on GitHub](https://github.com/SiyuLiu0329/uq-hpc-guide2022/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
