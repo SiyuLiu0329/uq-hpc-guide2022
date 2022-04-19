@@ -1,5 +1,5 @@
 ## What is HPC?
-High performance computing (HPC) is often referred to as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and Disk Drives) that can be allocated to execute our computational tasks. 
+High performance computing (HPC) is often referred to as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and disk drives) that can be allocated to execute our computational tasks. 
 
 There are a number of clusters avaiable to UQ reserachers and studnets. Cluster users can submit jobs (code) to a cluster for execution on specified hardware. The computing resources on a cluster are shared among all cluster users. The resources and workload are managed by a central job management system (**slurm**). 
 
@@ -113,7 +113,7 @@ Agree to terms and conditions by entering `yes` when prompted:
 Do you accept the license terms? [yes|no]
 [no] >>> yes
 ```
-Press "ENTER" to use `conda`'s preferred default location. All the `conda` binary will be stored here:
+Press "ENTER" to use `conda`'s preferred default location. All the `conda` binaries will be stored here:
 ```
 Miniconda3 will now be installed into this location:
 /home/Staff/[user_name]/miniconda3
@@ -273,7 +273,7 @@ The real computing power of the cluster is hidden behind `slurm`, a popular clus
 
 
 ### 4.1 Example `slurm` Script ("Request") for Rangpur
-A `slurm` "request" comes in the form of `slurm` scripts. Lets create one. In your cluster terminal, type `nano slurm.sh` to create a file `slurm.sh`. Paste in the following content:
+A `slurm` "request" comes in the form of `slurm` scripts. Lets create one. In your cluster terminal, type `nano slurm.sh` to create a file `slurm.sh`. Paste in the following content (remeber to replace the placeholder user name with your own):
 ```
 #!/bin/bash
 #SBATCH --time=1:00:00              # walltime limit (HH:MM:SS), job will be killed when this time is reached.
@@ -284,7 +284,12 @@ A `slurm` "request" comes in the form of `slurm` scripts. Lets create one. In yo
 #SBATCH --job-name="test"
 
 # The following is exactly the same as we did before, load up enviroment and run the code.
+
+# Link the path to miniconda's binaries (created by conda installer)
+export PATH="/home/Staff/[user_name]/miniconda3/bin:$PATH"
 conda activate /home/Staff/[user_name]/my-env
+ 
+# if for whatever reason, slurm is unable to locate conda, you can invoke the command with its full path:
 python main.py
 ```
 A slurm script has two main parts:
