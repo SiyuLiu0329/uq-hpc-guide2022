@@ -6,7 +6,7 @@ There are a number of clusters avaiable to UQ reserachers and studnets. Cluster 
 The typical workflow of running a computational task on a UQ hosted cluster involve:
 1. Remotely access the login node of a UQ hosted cluster,
 2. Copy the code over to the cluster,
-3. Set up the necesary environements (e.g. pytorch) needed to execute the code, 
+3. Set up the necessary environements (e.g. pytorch) needed to execute the code, 
 4. Send a request to the cluster workload managment system (`slurm`) to have your code executed,
 5. Your code will be executed when the requested resources are available and it is your turn.
 
@@ -70,7 +70,7 @@ Lets do a quick test by invoking the `python` command
 ```
 **As you can see, the cluster does not have any enviroment set up to even run `python`, not to mention `pytorch`. We need to configure the enviroment oursevles for our script to run!**
 
-## 3. Set Up The Necesary Environements on Rangpur
+## 3. Set Up The Necessary Environements on Rangpur
 ### 3.1 Installing Miniconda on Rangpur
 To successfully execute `main.py`, we need to at least have `python` and `pytorch` configured on the cluster. Dependencies for deep learning are best managed using [conda](https://docs.conda.io/en/latest/miniconda.html), which can set up an entire GPU enabled `python` environment with a few lines.
 
