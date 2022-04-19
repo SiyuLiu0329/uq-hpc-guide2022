@@ -40,7 +40,7 @@ Leave the terminal window open.
 *NOTE: `ssh` is a native commnad on macOS and Linux. If you are on Windows, you can use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or [Putty](https://www.putty.org) instead of `ssh`.*
 
 ## 2. Copy the Code Over to Rangpur
-On your local computer, create a example script `main.py` using the editor of your choice. Pretend this is the training script of a neural network.
+On your local computer, create an example script `main.py` using the editor of your choice. Pretend this is the training script of a neural network.
 ```
 # main.py
 
