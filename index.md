@@ -72,9 +72,9 @@ Lets do a quick test by invoking the `python` command
 
 ## 3. Set Up The Necessary Environements on Rangpur
 ### 3.1 Installing Miniconda on Rangpur
-To successfully execute `main.py`, we need to at least have `python` and `pytorch` configured on the cluster. Dependencies for deep learning are best managed using [conda](https://docs.conda.io/en/latest/miniconda.html), which can set up an entire GPU enabled `python` environment with a few lines.
+To successfully execute `main.py`, we will need to at least have `python` and `pytorch` configured on the cluster. Dependencies for deep learning are best managed using [conda](https://docs.conda.io/en/latest/miniconda.html), which can set up an entire GPU enabled `python` environment with a few commands.
 
-However, `conda` is not to users of Rangpur by default as of early 2022.
+However, `conda` is not available to users of Rangpur by default as of early 2022 (other cluster may differ. You can type `module avail` in the cluster terminal to check if `conda` is an option.).
 ```
 02:38:05 [user_name]@login1 ~ → conda
 -bash: conda: command not found
