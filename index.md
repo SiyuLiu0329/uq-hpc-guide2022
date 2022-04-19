@@ -302,7 +302,7 @@ You could also generate your own `slurm` script using a [generator](https://www.
 ### 5 Submit the `slurm` Script to Execute the Code
 Save the `slurm` script (`ctrl-x`, `y` then `Enter` for nano) and submit it for execution using `sbatch`.
 ```
-04:28:55 user_name@login1 ~ → sbatch slurm.sh
+04:28:55 [user_name]@login1 ~ → sbatch slurm.sh
 Submitted batch job 12614
 ```
 You are given a `job_id` which can later be used to cancel the job if needed. Once the job starts, `slurm` will create two files under the current directory `[job_id].out` and `[job_id].err` to store `stdout` and `stderr` outputs, respectively. After execution, `12614.out` should contain the same line as executing `main.py` before. Except this time, the code was executed using `slurm` allocated resources rather than on the login node.
@@ -312,9 +312,9 @@ True
 
 *Jobs read and write to the same local file system we see, hence they will output as if they were executed from an interactive terminal.* You can submit multiple jobs (even with the exact same code), just make their their outputs don't overwrite each other! (e.g. submitting 5 training scripts that save weights to `[ckpt]/weights.pth` will see them overwrting the checkpoint of each other). You can check the status of your submitted jobs with `squeue -u [user_name]`:
 ```
-04:29:05 user_name@login1 ~ → squeue -u user_name
-             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-             12614    vgpu20     test user_name PD       0:00      1 (Priority)
+04:29:05 [user_name]@login1 ~ → squeue -u [user_name]
+             JOBID PARTITION     NAME        USER ST       TIME  NODES NODELIST(REASON)
+             12614    vgpu20     test [user_name] PD       0:00      1 (Priority)
 ```
 `ST=PD` means pending. Once your jobs starts running (when its turn comes), you will see `R` in place of `PD`.
 
