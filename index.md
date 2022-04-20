@@ -55,7 +55,7 @@ Save the file and copy it over to the cluster using `scp [local file] [destinati
 ```
 scp ./main.py [user_name]@rangpur.compute.eait.uq.edu.au:/home/Staff/[user_name]   
 ```
-We have now copied the just created `main.py` to our remote `$HOME` directory (returned by the `pwd` command in step 1)
+We have now copied the just copied `main.py` to our remote `$HOME` directory (returned by the `pwd` command in step 1). `scp` can be used to copy files of any type and even entire directories with the `-r` flag.
 
 Enter `ls` again in the cluster terminal window, you should see the copy of `main.py` on Rangpur
 ```
