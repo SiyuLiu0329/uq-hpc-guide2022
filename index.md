@@ -315,7 +315,7 @@ You are given a `job_id` which can later be used to cancel the job if needed. On
 True
 ```
 
-*Jobs read and write to the same local file system we see, hence they will output as if they were executed from an interactive terminal.* You can submit multiple jobs (even with the exact same code), just make their their outputs don't overwrite each other! (e.g. submitting 5 training scripts that save weights to `[ckpt]/weights.pth` will see them overwrting the checkpoint of each other). You can check the status of your submitted jobs with `squeue -u [user_name]`:
+*Jobs read and write to the same local file system we see, hence they will output as if they were executed from an interactive terminal.* You can submit multiple jobs (even with the exact same code), just make sure their their outputs don't overwrite each other! (e.g. submitting 5 training scripts that save weights to `[ckpt]/weights.pth` will see them overwrting the checkpoint of each other). You can check the status of your submitted jobs with `squeue -u [user_name]`:
 ```
 04:29:05 [user_name]@login1 ~ → squeue -u [user_name]
              JOBID PARTITION     NAME        USER ST       TIME  NODES NODELIST(REASON)
