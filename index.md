@@ -295,6 +295,7 @@ python main.py
 A slurm script has two main parts:
 - **specifications**: a list of `#SBATCH --...` specifications to describe your request to slurm, including job name, run time and hardware requirements. A full list of options can be found [here](https://slurm.schedmd.com/sbatch.html). 
 - **main program**: following the list of specifications is the commands we would like to execute (such as training a neural network, preprocessing and inferece). The commands there will be executed **after** on a non-login node with the specifications we defined (gpu etc).
+- **slurm script generator**: you can also auto-generate a slurm script using the Iowa State University website: https://www.hpc.iastate.edu/guides/classroom-hpc-cluster/slurm-job-script-generator. However, you will need to insert the Rangpur-specific partition name which you can find using the `sinfo` command.
 
 For deep learning, the most important specifications are
 - `#SBATCH --gres...`: what resource (typically GPU) and how many to use. `gpu:1` means `1` of any `gpu`. We can also request a specific type of GPU if available (e.g. on Wiener we put `#SBATCH --gres=gpu:tesla-smx2:1`).
