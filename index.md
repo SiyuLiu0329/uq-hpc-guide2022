@@ -71,7 +71,7 @@ Lets do a quick test by invoking the `python` command
 02:28:04 [user_name]@login1 ~ → python main.py
 -bash: python: command not found
 ```
-**As you can see, the cluster does not have any enviroment set up to even run `python`, not to mention `pytorch`. We need to configure the enviroment oursevles for our script to run!**
+**As you can see, the cluster does not have any enviroment set up to even run `python`, not to mention `pytorch`. We need to configure the enviroment ourselves for our script to run!**
 
 ## 3. Set Up The Necessary Environements on Rangpur
 ### 3.1 Installing Miniconda on Rangpur
@@ -340,6 +340,9 @@ To interrupt / kill a running or pending job, use `scancel [job_id]`.
 - The `$HOME` directories are limited a 5GB on Rangpur, be sure to only store code and maybe `conda` enviroments there. For data storage you should use the `/scratch` drive or your research group drive.
 
 ## Support or Contact
+
+To request for additional disk quota on your Rangpur cluster, please contact the EAIT Helpdesk at helpdesk@eait.uq.edu.au.
+
 If you face any issues with your HPC setup or identify any errors in this guide, please do not hesitate to contact Siyu Liu (siyu.liu2@uqconnect.edu.au) or Aninda Saha (a.saha@uqconnect.edu.au).
 
 <!-- 
