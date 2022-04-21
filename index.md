@@ -1,5 +1,7 @@
-## Link to Presentation Slides
-21/04/22 -- UQ HPC/GPU training session -- https://drive.google.com/file/d/12B15trdheOK6abWc4d689eaDFx7kgxYf/view?usp=sharing
+## Link to Presentation
+21/04/22 -- UQ HPC/GPU training session 
+  - Slides: https://drive.google.com/file/d/12B15trdheOK6abWc4d689eaDFx7kgxYf/view?usp=sharing
+  - Recording: https://uqz.zoom.us/rec/play/DE-KNgM2pQhXydiRR1md7wvMtl3N-5Xg8FX8IyaCzb-S2S6cUUDgUaf9glgOo1_Uzp6BVXUA8lLtn9iY.JSbUFt5qKHjb7Pf9?autoplay=true
 
 ## Overview
 High performance computing (HPC) is often referred to as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and disk drives) that can be allocated to execute our computational tasks. 
