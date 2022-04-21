@@ -339,6 +339,9 @@ To interrupt / kill a running or pending job, use `scancel [job_id]`.
 - You can mount a cluster directory to your local computer using `sshfs`, and access the cluster file system as if it was an connected hard-drive.
 - The `$HOME` directories are limited a 5GB on Rangpur, be sure to only store code and maybe `conda` enviroments there. For data storage you should use the `/scratch` drive or your research group drive.
 
+## Support or Contact
+If you face any issues with your HPC setup or identify any errors in this guide, please do not hesitate to contact Siyu Liu (siyu.liu2@uqconnect.edu.au) or Aninda Saha (a.saha@uqconnect.edu.au).
+
 <!-- 
 You can use the [editor on GitHub](https://github.com/SiyuLiu0329/uq-hpc-guide2022/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
