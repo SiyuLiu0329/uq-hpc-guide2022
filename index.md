@@ -1,3 +1,6 @@
+## Link to Presentation Slides
+UQ HPC/GPU training session (21/04/22): https://drive.google.com/file/d/12B15trdheOK6abWc4d689eaDFx7kgxYf/view?usp=sharing
+
 ## Overview
 High performance computing (HPC) is often referred to as **supercomputers** or **clusters**. A cluster is a pool of computing resources (e.g. CPUs, GPUs and disk drives) that can be allocated to execute our computational tasks. 
 
@@ -214,6 +217,7 @@ Breakdown:
 - `--prefix` allows us to specific a specific directory to story the downloaded dependencies. Refer to `conda`'s documentation for other options.
 - `./my-env` is the directory I specified to store the packages used by this enviroment, it can be any director you have access to.
 - `pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch` are the packages we need to download to get `pytorch` running on GPU. Others have already done the hard work building these packages so installing everything is a one-liner for us!
+- More detailed info on conda commands can be found here: `https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html`
 
 `y` to confirm when prompted:
 ```
@@ -226,7 +230,7 @@ Breakdown:
 Proceed ([y]/n)? y
 ```
 
-The installation of this virual envorment should take around 10 mins and you will see the following once done:
+The installation of this virual environment should take a few mins and you will see the following once done:
 ```
 done
 #
@@ -247,7 +251,7 @@ main.py  miniconda3  Miniconda3-latest-Linux-x86_64.sh  my-env
 ```
 Up until this point, the enviroment is still not active so the packages in it are still not accessible to us. We will need to activate the environment next.
 
-### 3.3 Activating the `pytorch` Envornment
+### 3.3 Activating the `pytorch` Environment
 `conda` created enviroments will persist on the cluster, we just need to activate them before we use them, no need to reinstall every time we log in. Any `conda` environment install using the `--prefix` flag can be activated using `conda activate [env-dir]`. In this case, type: 
 ```
 conda activate /home/Staff/[user_name]/my-env
